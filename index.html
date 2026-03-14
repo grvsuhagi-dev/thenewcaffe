@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nothing Before Coffee | Premium Cafe in Jabalpur</title>
+    <meta name="description" content="Premium coffee experience at Nothing Before Coffee, Jabalpur. Enjoy the best Espresso, Cappuccino, and Snacks in a cozy environment.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --primary-color: #2C1810; /* Dark Espresso */
+            --secondary-color: #4B2E1E; /* Coffee Brown */
+            --accent-color: #D4A373; /* Latte Gold */
+            --bg-cream: #F5EBE0; /* Soft Cream */
+            --text-light: #FFFFFF;
+            --text-dark: #2C1810;
+            --transition: all 0.3s ease;
+        }
+
+        /* --- RESET & BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 600;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-color);
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            margin-left: 10px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            background: rgba(44, 24, 16, 0.95);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .hamburger {
+            display: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        #about {
+            padding: 100px 0;
+            background-color: var(--bg-cream);
+        }
+
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-text { flex: 1; min-width: 300px; }
+        .about-image { flex: 1; min-width: 300px; }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 20px 20px 0px var(--accent-color);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 50%;
+            height: 3px;
+            background: var(--accent-color);
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        /* --- MENU SECTION --- */
+        #menu {
+            padding: 100px 0;
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .menu-category h3 {
+            color: var(--accent-color);
+            border-bottom: 1px solid #4B2E1E;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .item-name { font-weight: 600; }
+        .item-price { color: var(--accent-color); }
+
+        /* --- GALLERY --- */
+        #gallery { padding: 100px 0; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- WHY CHOOSE US --- */
+        #features {
+            padding: 100px 0;
+            background: #fff;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-card i {
+            font-size: 3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        /* --- CONTACT SECTION --- */
+        #contact {
+            padding: 100px 0;
+            background: var(--bg-cream);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+        }
+
+        .map-wrapper {
+            height: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--primary-color);
+            color: #ccc;
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links {
+                display: none; /* Hide for mobile */
+            }
+            .hamburger { display: block; }
+            .about-flex { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header id="navbar">
+        <div class="container nav">
+            <a href="#" class="logo">NBC.</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content" data-aos="zoom-in">
+            <p>ESTABLISHED 2023</p>
+            <h1>Nothing Before Coffee</h1>
+            <p>Start Your Day With Perfect Coffee</p>
+            <div class="hero-btns">
+                <a href="#menu" class="btn btn-primary">View Menu</a>
+                <a href="#contact" class="btn btn-outline">Visit Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-flex">
+                <div class="about-image" data-aos="fade-right">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafe Interior">
+                </div>
+                <div class="about-text" data-aos="fade-left">
+                    <h2 class="section-title">Our Story</h2>
+                    <p>At <strong>Nothing Before Coffee</strong>, we believe that coffee is more than just a drink—it's a ritual. Located in the heart of Wright Town, Jabalpur, we provide a sanctuary for coffee lovers who appreciate the art of brewing.</p>
+                    <br>
+                    <p>Our cafe offers a cozy and friendly environment, making it the perfect spot for morning meetings, afternoon study sessions, or evening catch-ups with friends. Every cup is brewed with passion and precision.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu">
+        <div class="container">
+            <center><h2 class="section-title" style="color: white; margin-bottom: 50px;">The Coffee Menu</h2></center>
+            
+            <div class="menu-grid">
+                <!-- Espresso & Classics -->
+                <div class="menu-category" data-aos="fade-up">
+                    <h3>Espresso & Classics</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Espresso Solo</span>
+                        <span class="item-price">₹99</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caffe Americano</span>
+                        <span class="item-price">₹129</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Classic Cappuccino</span>
+                        <span class="item-price">₹149</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Flat White</span>
+                        <span class="item-price">₹169</span>
+                    </div>
+                </div>
+
+                <!-- Cold Coffee -->
+                <div class="menu-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Cold Coffee</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Classic Cold Coffee</span>
+                        <span class="item-price">₹159</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Hazelnut Frappe</span>
+                        <span class="item-price">₹189</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Caramel Macchiato</span>
+                        <span class="item-price">₹199</span>
+                    </div>
+                </div>
+
+                <!-- Snacks & Desserts -->
+                <div class="menu-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Snacks & Sweets</h3>
+                    <div class="menu-item">
+                        <span class="item-name">Grilled Sandwich</span>
+                        <span class="item-price">₹120</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Paneer Burger</span>
+                        <span class="item-price">₹110</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Choco Lava Cake</span>
+                        <span class="item-price">₹140</span>
+                    </div>
+                    <div class="menu-item">
+                        <span class="item-name">Blueberry Muffin</span>
+                        <span class="item-price">₹90</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title">Why Visit Us?</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-aos="zoom-in">
+                    <i class="fas fa-seedling"></i>
+                    <h4>Fresh Beans</h4>
+                    <p>100% Arabica beans sourced directly from premium estates.</p>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-couch"></i>
+                    <h4>Cozy Space</h4>
+                    <p>Comfortable seating with high-speed WiFi for work or chill.</p>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Fast Service</h4>
+                    <p>Get your caffeine fix without the long wait times.</p>
+                </div>
+                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-wallet"></i>
+                    <h4>Great Value</h4>
+                    <p>Premium coffee experience at affordable prices.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 40px;">Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Coffee"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Cafe"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Food"></div>
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Latte Art"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Find Us</h2>
+            <div class="contact-container">
+                <div class="contact-info" data-aos="fade-right">
+                    <p><strong>Address:</strong><br>
+                    Infront Of IDBI BANK, BM Heights, Pandit Ravishankar Shukla Stadium, Plot No 38, Road, Wright Town, Jabalpur, Madhya Pradesh 482002</p>
+                    <br>
+                    <p><strong>Phone:</strong><br>
+                    <a href="tel:+919893130207" style="color: var(--secondary-color); font-weight: bold;">+91 98931 30207</a></p>
+                    <br>
+                    <form class="contact-form">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea rows="4" placeholder="Message"></textarea>
+                        <button class="btn btn-primary" type="button">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-map" data-aos="fade-left">
+                    <div class="map-wrapper">
+                        <!-- Google Maps Embed -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.210452355818!2d79.92348327531785!3d23.1625299790757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981ae61988941cb%3A0x86f4458f338d7837!2sNothing%20Before%20Coffee!5e0!3m2!1sen!2sin!4v1709560000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-box">
+                    <div class="footer-logo">Nothing Before Coffee</div>
+                    <p>The premium coffee experience in Jabalpur. Quality beans, quality moments.</p>
+                </div>
+                <div class="footer-box">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">Our Story</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="https://maps.app.goo.gl/YW8a1TfXogBg1xvw8" target="_blank">Get Directions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-box">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Nothing Before Coffee. Designed for Coffee Lovers.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '70px';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'rgba(44, 24, 16, 0.95)';
+            navLinks.style.padding = '20px';
+        });
+    </script>
+</body>
+</html>
