@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafe Menu</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, sans-serif;
+    background:#f5f1ea;
+}
+
+/* Header */
+
+.header{
+    text-align:center;
+    padding:30px;
+    background:#4b3621;
+    color:white;
+    font-size:28px;
+    letter-spacing:2px;
+}
+
+/* Menu Container */
+
+.menu-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    padding:40px;
+}
+
+/* Menu Card */
+
+.menu-card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    transform:translateY(30px);
+    opacity:0;
+    animation:fadeUp 0.8s forwards;
+}
+
+/* Hover Animation */
+
+.menu-card:hover{
+    transform:scale(1.05);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* Image */
+
+.menu-card img{
+    width:100%;
+    border-radius:10px;
+}
+
+/* Title */
+
+.menu-card h3{
+    margin:10px 0;
+}
+
+/* Price */
+
+.price{
+    color:#4b3621;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* Animation */
+
+@keyframes fadeUp{
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+OUR CAFE MENU
+</div>
+
+<div class="menu-container">
+
+<div class="menu-card">
+<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+<h3>Espresso</h3>
+<p>Strong & rich coffee</p>
+<div class="price">₹120</div>
+</div>
+
+<div class="menu-card">
+<img src="https://images.unsplash.com/photo-1498804103079-a6351b050096">
+<h3>Cappuccino</h3>
+<p>Creamy milk coffee</p>
+<div class="price">₹180</div>
+</div>
+
+<div class="menu-card">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735">
+<h3>Cold Coffee</h3>
+<p>Chilled & refreshing</p>
+<div class="price">₹200</div>
+</div>
+
+<div class="menu-card">
+<img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0">
+<h3>Sandwich</h3>
+<p>Grilled veg sandwich</p>
+<div class="price">₹150</div>
+</div>
+
+</div>
+
+</body>
+</html>
