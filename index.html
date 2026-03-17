@@ -3,612 +3,587 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nothing Before Coffee | Premium Cafe in Jabalpur</title>
-    <meta name="description" content="Premium coffee experience at Nothing Before Coffee, Jabalpur. Enjoy the best Espresso, Cappuccino, and Snacks in a cozy environment.">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome for Icons -->
+    <title>Gourmet Haven - Premium Restaurant</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
     <style>
-        /* --- CSS VARIABLES --- */
-        :root {
-            --primary-color: #2C1810; /* Dark Espresso */
-            --secondary-color: #4B2E1E; /* Coffee Brown */
-            --accent-color: #D4A373; /* Latte Gold */
-            --bg-cream: #F5EBE0; /* Soft Cream */
-            --text-light: #FFFFFF;
-            --text-dark: #2C1810;
-            --transition: all 0.3s ease;
-        }
-
-        /* --- RESET & BASE STYLES --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
         }
 
-        ul { list-style: none; }
-        a { text-decoration: none; color: inherit; }
-
-        .container {
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border-radius: 50px;
-            display: inline-block;
-            font-weight: 600;
-            transition: var(--transition);
-            cursor: pointer;
-            border: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-color);
-            color: var(--accent-color);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            margin-left: 10px;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--accent-color);
-            color: var(--primary-color);
-        }
-
-        /* --- NAVIGATION --- */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            padding: 20px 0;
-            transition: var(--transition);
-        }
-
-        header.scrolled {
-            background: rgba(44, 24, 16, 0.95);
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            -webkit-background-cli: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
         }
 
-        .nav-links {
+        .nav-menu {
             display: flex;
+            list-style: none;
+            gap: 2rem;
         }
 
-        .nav-links li {
-            margin-left: 30px;
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .nav-links a {
-            color: var(--text-light);
-            font-weight: 400;
-            font-size: 0.9rem;
-            transition: var(--transition);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            transition: width 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--accent-color);
+        .nav-link:hover::after {
+            width: 100%;
         }
 
         .hamburger {
             display: none;
-            color: white;
-            font-size: 1.5rem;
+            flex-direction: column;
             cursor: pointer;
+            gap: 4px;
         }
 
-        /* --- HERO SECTION --- */
-        #hero {
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ff6b6b"/><stop offset="50%" stop-color="%23ffd93d"/><stop offset="100%" stop-color="%23000"/></radialGradient><rect fill="url(%23a)" x="200" y="100" width="800" height="600" rx="50"/></svg>');
             background-size: cover;
             background-position: center;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            color: var(--text-light);
+            color: white;
         }
 
         .hero-content h1 {
             font-size: 4rem;
-            margin-bottom: 10px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
         .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            max-width: 600px;
         }
 
-        /* --- ABOUT SECTION --- */
-        #about {
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Sections */
+        .section {
             padding: 100px 0;
-            background-color: var(--bg-cream);
-        }
-
-        .about-flex {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            flex-wrap: wrap;
-        }
-
-        .about-text { flex: 1; min-width: 300px; }
-        .about-image { flex: 1; min-width: 300px; }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 20px;
-            box-shadow: 20px 20px 0px var(--accent-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
         .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            position: relative;
-            display: inline-block;
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #333, #666);
+            -webkit-background-clp: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .section-title::after {
-            content: '';
-            width: 50%;
-            height: 3px;
-            background: var(--accent-color);
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-        }
-
-        /* --- MENU SECTION --- */
-        #menu {
-            padding: 100px 0;
-            background: var(--primary-color);
-            color: var(--text-light);
-        }
-
+        /* Menu Section */
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .menu-category h3 {
-            color: var(--accent-color);
-            border-bottom: 1px solid #4B2E1E;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+        .menu-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
+        .menu-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
         }
 
-        .item-name { font-weight: 600; }
-        .item-price { color: var(--accent-color); }
-
-        /* --- GALLERY --- */
-        #gallery { padding: 100px 0; }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1rem;
         }
 
-        .gallery-item {
-            height: 250px;
-            overflow: hidden;
+        .menu-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ff6b6b;
+            margin: 1rem 0;
+        }
+
+        /* Booking Form */
+        .booking-form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #eee;
             border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
 
-        .gallery-item img {
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        /* Order Modal */
+        .order-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* --- WHY CHOOSE US --- */
-        #features {
-            padding: 100px 0;
-            background: #fff;
-            text-align: center;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .feature-card i {
-            font-size: 3rem;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-        }
-
-        /* --- CONTACT SECTION --- */
-        #contact {
-            padding: 100px 0;
-            background: var(--bg-cream);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 50px;
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
             background: white;
-        }
-
-        .map-wrapper {
-            height: 400px;
+            padding: 3rem;
             border-radius: 20px;
-            overflow: hidden;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background: var(--primary-color);
-            color: #ccc;
-            padding: 60px 0 20px;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-logo {
-            color: var(--accent-color);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--accent-color);
-        }
-
-        .copyright {
+            max-width: 500px;
+            width: 90%;
             text-align: center;
-            border-top: 1px solid #444;
-            padding-top: 20px;
-            font-size: 0.8rem;
+            transition: all 0.3s ease;
         }
 
-        /* --- RESPONSIVE --- */
+        .modal.active .modal-content {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.5rem; }
-            .nav-links {
-                display: none; /* Hide for mobile */
+            .hamburger {
+                display: flex;
             }
-            .hamburger { display: block; }
-            .about-flex { flex-direction: column; }
+
+            .nav-menu {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0,0,0,0.98);
+                flex-direction: column;
+                padding: 2rem;
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4CAF50;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            z-index: 3000;
+            max-width: 400px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-
-    <!-- Header / Navbar -->
-    <header id="navbar">
-        <div class="container nav">
-            <a href="#" class="logo">NBC.</a>
-         <ul class="nav-links">
-<li><a href="index.html#hero">Home</a></li>
-<li><a href="about.html">About</a></li>
-<li><a href="services.html">Services</a></li>
-<li><a href="index.html#gallery">Gallery</a></li>
-<li><a href="contact.html">Contact</a></li>
-<li><a href="view-menu.html">Menu</a></li>
-li><a href="view-menu.html">order</a></li>
-</ul>
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Gourmet Haven</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#book" class="nav-link">Book Table</a></li>
+                <li><a href="#order" class="nav-link" onclick="openOrderModal()">Order Online</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
-    <section id="hero">
-        <div class="hero-content" data-aos="zoom-in">
-            <p>ESTABLISHED 2023</p>
-            <h1>Nothing Before Coffee</h1>
-            <p>Start Your Day With Perfect Coffee</p>
-            <div class="hero-btns">
-                <a href="view-menu.html" class="btn btn-primary">View Menu</a>
-                <a href="#contact" class="btn btn-outline">Visit Us</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="about-flex">
-                <div class="about-image" data-aos="fade-right">
-                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cafe Interior">
-                </div>
-                <div class="about-text" data-aos="fade-left">
-                    <h2 class="section-title">Our Story</h2>
-                    <p>At <strong>Nothing Before Coffee</strong>, we believe that coffee is more than just a drink—it's a ritual. Located in the heart of Wright Town, Jabalpur, we provide a sanctuary for coffee lovers who appreciate the art of brewing.</p>
-                    <br>
-                    <p>Our cafe offers a cozy and friendly environment, making it the perfect spot for morning meetings, afternoon study sessions, or evening catch-ups with friends. Every cup is brewed with passion and precision.</p>
-                </div>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Premium Dining Experience</h1>
+            <p>Discover exquisite flavors crafted by world-class chefs in an ambiance of elegance and sophistication.</p>
+            <a href="#menu" class="cta-button">Explore Menu</a>
         </div>
     </section>
 
     <!-- Menu Section -->
-    <section id="menu">
-        <div class="container">
-            <center><h2 class="section-title" style="color: white; margin-bottom: 50px;">The Coffee Menu</h2></center>
-            
-            <div class="menu-grid">
-                <!-- Espresso & Classics -->
-                <div class="menu-category" data-aos="fade-up">
-                    <h3>Espresso & Classics</h3>
-                    <div class="menu-item">
-                        <span class="item-name">Espresso Solo</span>
-                        <span class="item-price">₹99</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Caffe Americano</span>
-                        <span class="item-price">₹129</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Classic Cappuccino</span>
-                        <span class="item-price">₹149</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Flat White</span>
-                        <span class="item-price">₹169</span>
-                    </div>
-                </div>
-
-                <!-- Cold Coffee -->
-                <div class="menu-category" data-aos="fade-up" data-aos-delay="100">
-                    <h3>Cold Coffee</h3>
-                    <div class="menu-item">
-                        <span class="item-name">Classic Cold Coffee</span>
-                        <span class="item-price">₹159</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Hazelnut Frappe</span>
-                        <span class="item-price">₹189</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Caramel Macchiato</span>
-                        <span class="item-price">₹199</span>
-                    </div>
-                </div>
-
-                <!-- Snacks & Desserts -->
-                <div class="menu-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Snacks & Sweets</h3>
-                    <div class="menu-item">
-                        <span class="item-name">Grilled Sandwich</span>
-                        <span class="item-price">₹120</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Paneer Burger</span>
-                        <span class="item-price">₹110</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Choco Lava Cake</span>
-                        <span class="item-price">₹140</span>
-                    </div>
-                    <div class="menu-item">
-                        <span class="item-name">Blueberry Muffin</span>
-                        <span class="item-price">₹90</span>
-                    </div>
-                </div>
+    <section id="menu" class="section">
+        <h2 class="section-title">Our Signature Dishes</h2>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIHJVY2Z0VudHM9IiNmZmYiLz48L3N2Zz4=" alt="Truffle Pasta">
+                <h3>Truffle Pasta</h3>
+                <p>Creamy black truffle pasta with parmesan and fresh herbs</p>
+                <div class="menu-price">$28</div>
+            </div>
+            <div class="menu-card">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZENzkiIHJVY2Z1ZW50cz0iI2ZmZiIvPjwvc3ZnPg==" alt="Wagyu Steak">
+                <h3>Wagyu Steak</h3>
+                <p>Premium A5 wagyu beef, grilled to perfection</p>
+                <div class="menu-price">$89</div>
+            </div>
+            <div class="menu-card">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjZCMzAwIiBydGNlbnRzPSIjZmZmIi8+PC9zdmc+" alt="Lobster Risotto">
+                <h3>Lobster Risotto</h3>
+                <p>Canadian lobster with saffron risotto and caviar</p>
+                <div class="menu-price">$65</div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section id="features">
-        <div class="container">
-            <h2 class="section-title">Why Visit Us?</h2>
-            <div class="features-grid">
-                <div class="feature-card" data-aos="zoom-in">
-                    <i class="fas fa-seedling"></i>
-                    <h4>Fresh Beans</h4>
-                    <p>100% Arabica beans sourced directly from premium estates.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="100">
-                    <i class="fas fa-couch"></i>
-                    <h4>Cozy Space</h4>
-                    <p>Comfortable seating with high-speed WiFi for work or chill.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-bolt"></i>
-                    <h4>Fast Service</h4>
-                    <p>Get your caffeine fix without the long wait times.</p>
-                </div>
-                <div class="feature-card" data-aos="zoom-in" data-aos-delay="300">
-                    <i class="fas fa-wallet"></i>
-                    <h4>Great Value</h4>
-                    <p>Premium coffee experience at affordable prices.</p>
-                </div>
+    <!-- Table Booking -->
+    <section id="book" class="section">
+        <h2 class="section-title">Reserve Your Table</h2>
+        <form class="booking-form" onsubmit="bookTable(event)">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="name" required>
             </div>
-        </div>
+            <div class="form-group">
+                <label>Phone</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+                <label>Time</label>
+                <input type="time" id="time" required>
+            </div>
+            <div class="form-group">
+                <label>Guests</label>
+                <select id="guests" required>
+                    <option value="">Select number</option>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 People</option>
+                    <option value="3">3 People</option>
+                    <option value="4">4 People</option>
+                    <option value="5+">5+ People</option>
+                </select>
+            </div>
+            <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Book Table</button>
+        </form>
     </section>
 
-    <!-- Gallery -->
-    <section id="gallery">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 40px;">Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Coffee"></div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100"><img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Cafe"></div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200"><img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Food"></div>
-                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="Latte Art"></div>
-            </div>
+    <!-- Order Modal -->
+    <div id="orderModal" class="order-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
+            <h2>Order Online</h2>
+            <p>Coming soon! Our online ordering system will be available shortly.</p>
+            <p>📞 Call us at: <strong>+1 (555) 123-4567</strong></p>
+            <button class="cta-button" onclick="closeOrderModal()" style="margin-top: 1rem;">Close</button>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact & Location -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Find Us</h2>
-            <div class="contact-container">
-                <div class="contact-info" data-aos="fade-right">
-                    <p><strong>Address:</strong><br>
-                    Infront Of IDBI BANK, BM Heights, Pandit Ravishankar Shukla Stadium, Plot No 38, Road, Wright Town, Jabalpur, Madhya Pradesh 482002</p>
-                    <br>
-                    <p><strong>Phone:</strong><br>
-                    <a href="tel:+919893130207" style="color: var(--secondary-color); font-weight: bold;">+91 98931 30207</a></p>
-                    <br>
-                    <form class="contact-form">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
-                        <textarea rows="4" placeholder="Message"></textarea>
-                        <button class="btn btn-primary" type="button">Send Message</button>
-                    </form>
-                </div>
-                <div class="contact-map" data-aos="fade-left">
-                    <div class="map-wrapper">
-                        <!-- Google Maps Embed -->
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.210452355818!2d79.92348327531785!3d23.1625299790757!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3981ae61988941cb%3A0x86f4458f338d7837!2sNothing%20Before%20Coffee!5e0!3m2!1sen!2sin!4v1709560000000!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Success Message -->
+    <div id="successMsg" class="success-message">
+        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+        <h3>Booking Confirmed!</h3>
+        <p>We'll call you shortly to confirm your reservation.</p>
+    </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-box">
-                    <div class="footer-logo">Nothing Before Coffee</div>
-                    <p>The premium coffee experience in Jabalpur. Quality beans, quality moments.</p>
-                </div>
-                <div class="footer-box">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">Our Story</a></li>
-                        <li><a href="#menu">Menu</a></li>
-                        <li><a href="https://maps.app.goo.gl/YW8a1TfXogBg1xvw8" target="_blank">Get Directions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-box">
-                    <h4>Follow Us</h4>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-google"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                &copy; 2024 Nothing Before Coffee. Designed for Coffee Lovers.
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true
+        // GSAP Registration
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Navbar animations
+        gsap.from(".logo", {
+            duration: 1,
+            y: -50,
+            opacity: 0,
+            ease: "power3.out"
         });
 
-        // Navbar Scroll Effect
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
+        // Hero animations
+        gsap.from(".hero-content h1", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.5,
+            ease: "power3.out"
+        });
+
+        gsap.from(".hero-content p", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.7,
+            ease: "power3.out"
+        });
+
+        gsap.from(".cta-button", {
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            delay: 0.9,
+            ease: "power3.out"
+        });
+
+        // Menu cards scroll animations
+        gsap.utils.toArray(".menu-card").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 80%",
+                },
+                duration: 1,
+                y: 50,
+                opacity: 0,
+                delay: i * 0.1,
+                ease: "power3.out"
+            });
+        });
+
+        // Booking form animation
+        gsap.from(".booking-form", {
+            scrollTrigger: {
+                trigger: ".booking-form",
+                start: "top 80%",
+            },
+            duration: 1,
+            y: 50,
+            opacity: 0,
+            ease: "power3.out"
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.98)';
+                navbar.style.padding = '0.5rem 0';
             } else {
-                nav.classList.remove('scrolled');
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+                navbar.style.padding = '1rem 0';
             }
         });
 
-        // Mobile Menu Toggle
+        // Mobile menu toggle
         const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const navMenu = document.querySelector('.nav-menu');
 
         hamburger.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            navLinks.style.flexDirection = 'column';
-            navLinks.style.position = 'absolute';
-            navLinks.style.top = '70px';
-            navLinks.style.left = '0';
-            navLinks.style.width = '100%';
-            navLinks.style.background = 'rgba(44, 24, 16, 0.95)';
-            navLinks.style.padding = '20px';
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Booking form submission
+        function bookTable(e) {
+            e.preventDefault();
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                date: document.getElementById('date').value,
+                time: document.getElementById('time').value,
+                guests: document.getElementById('guests').value
+            };
+
+            // Simulate API call
+            setTimeout(() => {
+                document.getElementById('successMsg').style.display = 'block';
+                gsap.from('#successMsg', {
+                    scale: 0.5,
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: "back.out(1.7)"
+                });
+                
+                setTimeout(() => {
+                    document.getElementById('successMsg').style.display = 'none';
+                }, 4000);
+                
+                e.target.reset();
+            }, 1000);
+        }
+
+        // Order modal functions
+        function openOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.style.display = 'block';
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function closeOrderModal() {
+            const modal = document.getElementById('orderModal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('orderModal');
+            if (e.target === modal) {
+                closeOrderModal();
+            }
         });
     </script>
 </body>
-</html> 
-
+</html>
