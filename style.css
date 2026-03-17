@@ -1,67 +1,131 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial;
-}
-
 body{
-background:#0f172a;
-color:white;
+
+font-family: Arial;
+margin:0;
+background:#fafafa;
+
 }
 
-header{
+
+nav{
+
 display:flex;
 justify-content:space-between;
-padding:20px 10%;
-background:#020617;
-position:sticky;
-top:0;
+padding:20px;
+background:#111;
+color:white;
+
 }
 
-nav a{
-color:white;
-margin:15px;
-text-decoration:none;
+
+nav ul{
+
+display:flex;
+list-style:none;
+
 }
+
+
+nav ul li{
+
+margin-left:20px;
+
+}
+
 
 .hero{
-height:100vh;
-background:url("https://images.unsplash.com/photo-1555396273-367ea4eb4db5");
-background-size:cover;
+
+height:80vh;
+background:url('/static/images/restaurant.jpg') center/cover;
+
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-text-align:center;
+
+color:white;
+
 }
 
-.hero h2{
-font-size:60px;
-}
 
 .btn{
-padding:15px 35px;
-background:#ef4444;
-border:none;
+
+background:red;
+padding:12px 25px;
+color:white;
+text-decoration:none;
 margin-top:20px;
-cursor:pointer;
-border-radius:30px;
+
+transition:0.3s;
+
 }
 
-.info{
+.btn:hover{
+
+background:rgb(220, 24, 24);
+
+}
+
+
+.menu-container{
+
 display:flex;
-justify-content:center;
-gap:40px;
-padding:80px;
+gap:20px;
+padding:30px;
+
 }
 
-.info-card{
-background:#1e293b;
-padding:40px;
+
+.menu-card{
+
+background:white;
+padding:20px;
 border-radius:10px;
-transition:0.4s;
+
+transition:0.3s;
+
 }
 
-.info-card:hover{
-transform:translateY(-10px) scale(1.05);
+
+.menu-card:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+
+}
+
+
+.gallery-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+
+}
+
+.gallery-grid img{
+
+width:100%;
+
+border-radius:10px;
+
+}
+
+
+form{
+
+display:flex;
+flex-direction:column;
+width:300px;
+margin:40px auto;
+
+}
+
+
+input,button{
+
+padding:10px;
+margin:10px;
+
 }

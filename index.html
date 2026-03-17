@@ -1,589 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gourmet Haven - Premium Restaurant</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<title>Royal Restaurant</title>
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            -webkit-background-cli: text;
-            -webkit-text-fill-color: transparent;
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-link {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 4px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: white;
-            transition: 0.3s;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23000" width="1200" height="800"/><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ff6b6b"/><stop offset="50%" stop-color="%23ffd93d"/><stop offset="100%" stop-color="%23000"/></radialGradient><rect fill="url(%23a)" x="200" y="100" width="800" height="600" rx="50"/></svg>');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .hero-content p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(50px);
-            max-width: 600px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: transform 0.3s ease;
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* Sections */
-        .section {
-            padding: 100px 0;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 4rem;
-            background: linear-gradient(45deg, #333, #666);
-            -webkit-background-clp: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Menu Section */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .menu-card {
-            background: white;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .menu-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-
-        .menu-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 15px;
-            margin-bottom: 1rem;
-        }
-
-        .menu-price {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #ff6b6b;
-            margin: 1rem 0;
-        }
-
-        /* Booking Form */
-        .booking-form {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            opacity: 0;
-            transform: translateY(50px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .form-group input, .form-group select {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #eee;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus, .form-group select:focus {
-            outline: none;
-            border-color: #ff6b6b;
-        }
-
-        /* Order Modal */
-        .order-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.7);
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .modal.active .modal-content {
-            transform: translate(-50%, -50%) scale(1);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 1rem;
-            right: 1.5rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: fixed;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(0,0,0,0.98);
-                flex-direction: column;
-                padding: 2rem;
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-
-            .nav-menu.active {
-                transform: translateY(0);
-                opacity: 1;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-
-        /* Success Message */
-        .success-message {
-            display: none;
-            position: fixed;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #4CAF50;
-            color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            z-index: 3000;
-            max-width: 400px;
-            text-align: center;
-        }
-    </style>
 </head>
+
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Gourmet Haven</a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#menu" class="nav-link">Menu</a></li>
-                <li><a href="#book" class="nav-link">Book Table</a></li>
-                <li><a href="#order" class="nav-link" onclick="openOrderModal()">Order Online</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Premium Dining Experience</h1>
-            <p>Discover exquisite flavors crafted by world-class chefs in an ambiance of elegance and sophistication.</p>
-            <a href="#menu" class="cta-button">Explore Menu</a>
-        </div>
-    </section>
+<nav>
 
-    <!-- Menu Section -->
-    <section id="menu" class="section">
-        <h2 class="section-title">Our Signature Dishes</h2>
-        <div class="menu-grid">
-            <div class="menu-card">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkY2QjZCIHJVY2Z0VudHM9IiNmZmYiLz48L3N2Zz4=" alt="Truffle Pasta">
-                <h3>Truffle Pasta</h3>
-                <p>Creamy black truffle pasta with parmesan and fresh herbs</p>
-                <div class="menu-price">$28</div>
-            </div>
-            <div class="menu-card">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRkZENzkiIHJVY2Z1ZW50cz0iI2ZmZiIvPjwvc3ZnPg==" alt="Wagyu Steak">
-                <h3>Wagyu Steak</h3>
-                <p>Premium A5 wagyu beef, grilled to perfection</p>
-                <div class="menu-price">$89</div>
-            </div>
-            <div class="menu-card">
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjZCMzAwIiBydGNlbnRzPSIjZmZmIi8+PC9zdmc+" alt="Lobster Risotto">
-                <h3>Lobster Risotto</h3>
-                <p>Canadian lobster with saffron risotto and caviar</p>
-                <div class="menu-price">$65</div>
-            </div>
-        </div>
-    </section>
+<h1>Royal Restaurant</h1>
 
-    <!-- Table Booking -->
-    <section id="book" class="section">
-        <h2 class="section-title">Reserve Your Table</h2>
-        <form class="booking-form" onsubmit="bookTable(event)">
-            <div class="form-group">
-                <label>Full Name</label>
-                <input type="text" id="name" required>
-            </div>
-            <div class="form-group">
-                <label>Phone</label>
-                <input type="tel" id="phone" required>
-            </div>
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" id="date" required>
-            </div>
-            <div class="form-group">
-                <label>Time</label>
-                <input type="time" id="time" required>
-            </div>
-            <div class="form-group">
-                <label>Guests</label>
-                <select id="guests" required>
-                    <option value="">Select number</option>
-                    <option value="1">1 Person</option>
-                    <option value="2">2 People</option>
-                    <option value="3">3 People</option>
-                    <option value="4">4 People</option>
-                    <option value="5+">5+ People</option>
-                </select>
-            </div>
-            <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Book Table</button>
-        </form>
-    </section>
+<ul>
 
-    <!-- Order Modal -->
-    <div id="orderModal" class="order-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeOrderModal()">&times;</span>
-            <h2>Order Online</h2>
-            <p>Coming soon! Our online ordering system will be available shortly.</p>
-            <p>📞 Call us at: <strong>+1 (555) 123-4567</strong></p>
-            <button class="cta-button" onclick="closeOrderModal()" style="margin-top: 1rem;">Close</button>
-        </div>
-    </div>
+<li><a href="/">Home</a></li>
+<li><a href="/menu">Menu</a></li>
+<li><a href="/reservation">Reserve Table</a></li>
 
-    <!-- Success Message -->
-    <div id="successMsg" class="success-message">
-        <i class="fas fa-check-circle" style="font-size: 3rem; margin-bottom: 1rem;"></i>
-        <h3>Booking Confirmed!</h3>
-        <p>We'll call you shortly to confirm your reservation.</p>
-    </div>
+</ul>
 
-    <script>
-        // GSAP Registration
-        gsap.registerPlugin(ScrollTrigger);
+</nav>
 
-        // Navbar animations
-        gsap.from(".logo", {
-            duration: 1,
-            y: -50,
-            opacity: 0,
-            ease: "power3.out"
-        });
 
-        // Hero animations
-        gsap.from(".hero-content h1", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            delay: 0.5,
-            ease: "power3.out"
-        });
+<section class="hero">
 
-        gsap.from(".hero-content p", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            delay: 0.7,
-            ease: "power3.out"
-        });
+<h2>Welcome to Royal Dining</h2>
 
-        gsap.from(".cta-button", {
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            delay: 0.9,
-            ease: "power3.out"
-        });
+<p>Experience premium taste and luxury atmosphere</p>
 
-        // Menu cards scroll animations
-        gsap.utils.toArray(".menu-card").forEach((card, i) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                },
-                duration: 1,
-                y: 50,
-                opacity: 0,
-                delay: i * 0.1,
-                ease: "power3.out"
-            });
-        });
+<a href="/reservation" class="btn">Book Table</a>
 
-        // Booking form animation
-        gsap.from(".booking-form", {
-            scrollTrigger: {
-                trigger: ".booking-form",
-                start: "top 80%",
-            },
-            duration: 1,
-            y: 50,
-            opacity: 0,
-            ease: "power3.out"
-        });
+</section>
 
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(0, 0, 0, 0.98)';
-                navbar.style.padding = '0.5rem 0';
-            } else {
-                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
-                navbar.style.padding = '1rem 0';
-            }
-        });
 
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
+<section class="about">
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        });
+<h2>About Us</h2>
 
-        // Smooth scrolling for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-                navMenu.classList.remove('active');
-            });
-        });
+<p>
+Our restaurant offers world class cuisine with a luxury environment.
+Fresh ingredients and professional chefs create unforgettable taste.
+</p>
 
-        // Booking form submission
-        function bookTable(e) {
-            e.preventDefault();
-            const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                date: document.getElementById('date').value,
-                time: document.getElementById('time').value,
-                guests: document.getElementById('guests').value
-            };
+</section>
 
-            // Simulate API call
-            setTimeout(() => {
-                document.getElementById('successMsg').style.display = 'block';
-                gsap.from('#successMsg', {
-                    scale: 0.5,
-                    opacity: 0,
-                    duration: 0.5,
-                    ease: "back.out(1.7)"
-                });
-                
-                setTimeout(() => {
-                    document.getElementById('successMsg').style.display = 'none';
-                }, 4000);
-                
-                e.target.reset();
-            }, 1000);
-        }
 
-        // Order modal functions
-        function openOrderModal() {
-            const modal = document.getElementById('orderModal');
-            modal.style.display = 'block';
-            setTimeout(() => modal.classList.add('active'), 10);
-        }
+<section class="gallery">
 
-        function closeOrderModal() {
-            const modal = document.getElementById('orderModal');
-            modal.classList.remove('active');
-            setTimeout(() => modal.style.display = 'none', 300);
-        }
+<h2>Food Gallery</h2>
 
-        // Close modal on outside click
-        window.addEventListener('click', (e) => {
-            const modal = document.getElementById('orderModal');
-            if (e.target === modal) {
-                closeOrderModal();
-            }
-        });
-    </script>
+<div class="gallery-grid">
+
+<img src="/static/images/burger.jpg">
+<img src="/static/images/pizza.jpg">
+<img src="/static/images/pasta.jpg">
+
+</div>
+
+</section>
+
+
+<section class="contact">
+
+<h2>Contact</h2>
+
+<p>Phone : 9999999999</p>
+
+<iframe
+src="https://maps.google.com/maps?q=restaurant&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+</section>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>

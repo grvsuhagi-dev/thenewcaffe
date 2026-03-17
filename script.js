@@ -1,16 +1,19 @@
-window.addEventListener("scroll",()=>{
+// simple scroll animation
 
-const cards=document.querySelectorAll(".info-card")
+window.addEventListener("scroll", function(){
 
-cards.forEach(card=>{
+let elements = document.querySelectorAll(".menu-card");
 
-let top=card.getBoundingClientRect().top
+elements.forEach(function(el){
 
-if(top<window.innerHeight-50){
+let position = el.getBoundingClientRect().top;
 
-card.style.opacity="1"
+let screen = window.innerHeight;
 
-card.style.transform="translateY(0)"
+if(position < screen){
+
+el.style.opacity = "1";
+el.style.transform = "translateY(0px)";
 
 }
 
