@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+
+{% block title %}Gourmet Haven - Premium Dining Experience{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title animate-slide-up">Welcome to <span class="gradient-text">Gourmet Haven</span></h1>
+        <p class="hero-subtitle animate-slide-up delay-1">Experience culinary excellence with our premium dishes and exceptional service</p>
+        <div class="hero-buttons animate-slide-up delay-2">
+            <a href="{{ url_for('reservation') }}" class="btn btn-primary">Book a Table</a>
+            <a href="{{ url_for('menu') }}" class="btn btn-secondary">View Menu</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Restaurant Interior">
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about section-padding">
+    <div class="container">
+        <div class="section-header animate-fade-in">
+            <h2>About Our Restaurant</h2>
+            <p>Discover what makes us the premier dining destination</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text animate-slide-right">
+                <h3>Premium Dining Experience</h3>
+                <p>Gourmet Haven offers an exquisite culinary journey featuring the finest ingredients sourced globally. Our master chefs create dishes that tantalize the senses and delight the palate.</p>
+                <div class="features-grid">
+                    <div class="feature">
+                        <i class="fas fa-award"></i>
+                        <h4>Award Winning</h4>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-utensils"></i>
+                        <h4>Premium Ingredients</h4>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h4>Perfect Service</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image animate-slide-left">
+                <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Restaurant">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Owner Section -->
+<section class="owner section-padding bg-light">
+    <div class="container">
+        <div class="section-header animate-fade-in">
+            <h2>Meet Our Owner</h2>
+            <p>Chef Michael Rodriguez - 20+ years of culinary excellence</p>
+        </div>
+        <div class="owner-card animate-zoom-in">
+            <div class="owner-image">
+                <img src="{{ url_for('static', filename='images/hero-bg.jpg') }}" alt="Owner">
+            </div>
+            <div class="owner-info">
+                <h3>Chef Michael Rodriguez</h3>
+                <p class="owner-title">Executive Chef & Owner</p>
+                <p>With over two decades of experience in fine dining, Chef Michael brings passion and precision to every plate. His innovative approach to classic cuisine has earned international acclaim.</p>
+                <a href="{{ url_for('contact') }}" class="btn btn-primary">Contact Chef</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Section -->
+<section class="gallery section-padding">
+    <div class="container">
+        <div class="section-header animate-fade-in">
+            <h2>Our Culinary Masterpieces</h2>
+            <p>Browse our stunning food presentation</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item animate-slide-up">
+                <img src="{{ url_for('static', filename='images/gallery1.jpg') }}" alt="Dish 1">
+                <div class="gallery-overlay">
+                    <h4>Signature Steak</h4>
+                </div>
+            </div>
+            <div class="gallery-item animate-slide-up delay-1">
+                <img src="{{ url_for('static', filename='images/gallery2.jpg') }}" alt="Dish 2">
+                <div class="gallery-overlay">
+                    <h4>Seafood Platter</h4>
+                </div>
+            </div>
+            <div class="gallery-item animate-slide-up delay-2">
+                <img src="{{ url_for('static', filename='images/menu1.jpg') }}" alt="Dish 3">
+                <div class="gallery-overlay">
+                    <h4>Truffle Pasta</h4>
+                </div>
+            </div>
+            <div class="gallery-item animate-slide-up delay-3">
+                <img src="{{ url_for('static', filename='images/menu2.jpg') }}" alt="Dish 4">
+                <div class="gallery-overlay">
+                    <h4>Chocolate Lava Cake</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta section-padding">
+    <div class="container">
+        <div class="cta-content animate-fade-in">
+            <h2>Ready to Experience Excellence?</h2>
+            <p>Reserve your table now and let us create an unforgettable dining experience</p>
+            <a href="{{ url_for('reservation') }}" class="btn btn-primary btn-large">Book Now</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
